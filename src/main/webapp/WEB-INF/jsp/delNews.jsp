@@ -10,31 +10,25 @@
 <body>
 
 <center>
-<h1>Project Name: ­ Power News Management System</h1>
-<%--
-<h4>Author: Kane, Alexander; Gurung, Gyan; Walker, Joel; Belton, Dillon; Stephen, Benjamin; szunrai@gmail.com; Dong, Wei</h4>
-<p>
-Welcome to the <b>Spring Boot-MVC-JPA-PostgreSQL-Maven Application!</b><br/>
-</p>
- --%>
 <h3>Course: UMSL CS5520-2017-Spring</h3>
+<h3>Delete Form</h3>
 	<fieldset>
-		<form:form id="saveForm" modelAttribute="news" 
-			action="saveNews" method="POST">
+		<form:form id="delForm" modelAttribute="news" 
+			action="delNews" method="POST">
 		<br/>
 		<form:input path="id" placeholder="Input id"></form:input>
 		<form:input path="source" placeholder="Input source"></form:input>
 		<form:input path="title" placeholder="Input title"></form:input>
 		<form:input path="content" placeholder="Input content"></form:input>
-		<input type="submit" value="Save"></input>
+		<input type="submit" value="Delete"></input>
 		<br/><br/>
 		<br>
 
 		<fieldset>
 
-		<c:if test="${(!empty news) and (news.id ne 0)}">
+		<c:if test="${(!empty news) and (!empty news.id) and (news.id ne 0)}">
 		<div style="color: teal;font-size: 30px">
-			The Following News Saved Into Database
+			The Following News Deleted From Database:
 		</div>
 		<br><br>
 		<table border="1" bgcolor="black" width="600px">
@@ -55,11 +49,15 @@ Welcome to the <b>Spring Boot-MVC-JPA-PostgreSQL-Maven Application!</b><br/>
 		</table>
 		</c:if>
 		<br>
-		<a href="showSavedNews" >Click here to load saved news</a>
+		<a href="inputNews" >Click here to input news</a>
 		
 		</fieldset>
-		
 
+		<br/>
+		
+		<fieldset>
+		<a href="showSavedNews" >Click here to load saved news</a>
+		</fieldset>
 		</form:form>
 	</fieldset>
 	</center>	

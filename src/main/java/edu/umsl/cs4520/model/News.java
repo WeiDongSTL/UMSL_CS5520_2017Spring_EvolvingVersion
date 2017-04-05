@@ -15,18 +15,18 @@ public class News implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-    private int id;
+    private Integer id;
     private String source;
     private String title;
     private String content;
 
     @Id
     @Column(name = "id", nullable = false, insertable = true, updatable = true)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -67,7 +67,7 @@ public class News implements Serializable {
 
         News news = (News) o;
 
-        if (id != news.id) return false;
+        if (!id.equals(news.id)) return false;
         if (source != null ? !source.equals(news.source) : news.source != null) return false;
         if (title != null ? !title.equals(news.title) : news.title != null) return false;
         if (content != null ? !content.equals(news.content) : news.content != null) return false;

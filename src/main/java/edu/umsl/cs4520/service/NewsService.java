@@ -10,6 +10,8 @@ public interface NewsService {
 	Page<News> findAllNews(Pageable pageable);
 
 	News getNews(String source, String title);
+
+	News getNewsById(int id);
 	
 	News saveNews(News news);
 	

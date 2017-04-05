@@ -9,7 +9,7 @@ import org.springframework.data.repository.Repository;
 import edu.umsl.cs4520.model.News;
 
 
-public interface NewsRepository extends Repository<News, Long> {
+public interface NewsRepository extends Repository<News, Integer> {
 	Page<News> findAll(Pageable pageable);
 
 	Page<News> findBySourceContainingAndTitleContainingAllIgnoringCase(String source,
@@ -21,6 +21,6 @@ public interface NewsRepository extends Repository<News, Long> {
 	
 	News save(News news);
 	
-	Optional<News> findOne(Long id);
+	Optional<News> findOne(Integer id);
 
 }

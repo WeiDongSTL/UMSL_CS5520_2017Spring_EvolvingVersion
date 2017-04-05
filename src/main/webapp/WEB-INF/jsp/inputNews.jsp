@@ -32,7 +32,7 @@ Welcome to the <b>Spring Boot-MVC-JPA-PostgreSQL-Maven Application!</b><br/>
 
 		<fieldset>
 
-		<c:if test="${(!empty news) and (news.id ne 0)}">
+		<c:if test="${(!empty news) and (!empty news.id) and (news.id ne 0)}">
 		<div style="color: teal;font-size: 30px">
 			The Following News Just Saved Into Database:
 		</div>
@@ -59,6 +59,11 @@ Welcome to the <b>Spring Boot-MVC-JPA-PostgreSQL-Maven Application!</b><br/>
 		
 		</fieldset>
 		
+		<br/>
+
+		<fieldset>
+		<a href="toDelNews" >Click here to delete news</a>
+		</fieldset>	
 
 		</form:form>
 	</fieldset>

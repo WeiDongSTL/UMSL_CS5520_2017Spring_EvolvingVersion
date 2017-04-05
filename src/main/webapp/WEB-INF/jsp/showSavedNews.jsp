@@ -28,7 +28,7 @@
 		
 		<br>
 
-		<c:if test="${!empty newsList.newsList}">
+		<c:if test="${!empty newsList}">
 		<div style="color: teal;font-size: 30px">
 			The Following News Are Retrieved From Database: 
 		</div>
@@ -41,7 +41,7 @@
 		<td>title</td>
 		<td>Content</td>
 		</tr>
-		<c:forEach items="${newsList.newsList}" var="news">
+		<c:forEach items="${newsList}" var="news">
 			<tr style="background-color:white;color: black;
 				text-align: center;" height="30px" >
 			<td><c:out value="${news.id}"/></td>
@@ -55,7 +55,12 @@
 		<a href="inputNews" >Click here to input news</a>
 		
 		</fieldset>
-		
+
+		<br/>
+
+		<fieldset>
+		<a href="toDelNews" >Click here to delete news</a>
+		</fieldset>	
 		</form:form>
 	</fieldset>
 	</center>	

@@ -17,6 +17,9 @@
 package edu.umsl.cs4520.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 //import java.util.Date;
 //import java.util.Map;
 
@@ -26,9 +29,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -70,11 +75,18 @@ public class NewsController {
     }
     @RequestMapping(value = "/showSavedNews", method = RequestMethod.GET)
     public ModelAndView showSavedNews(
-            @ModelAttribute NewsList newsList,
+            @ModelAttribute("newsList") ArrayList<News> newsList,
             BindingResult result) {
-    	newsList.setNewsPage(this.newsService.findAllNews(new PageRequest(0, 100)));
+    	newsList = new ArrayList<>();
+		System.out.println("newsList = " + newsList);
+		for (News n : this.newsService.findAllNews(new PageRequest(0, 100)).getContent()) {
+			newsList.add(n);
+			
+		}
+/*    	newsList.setNewsPage(this.newsService.findAllNews(new PageRequest(0, 100)));
+		System.out.println("newsList = " + newsList);
     	Page<News> pages = newsList.getNewsPage();
-		System.out.println("pages.hasNext(): " + pages.hasNext());
+    	System.out.println("pages.getContent() = " + pages.getContent());
     	while(pages.hasNext()) {
     		newsList.addNewsList(pages.getContent());
     	}
@@ -82,8 +94,9 @@ public class NewsController {
     		System.out.println(n);
     	}
 		System.out.println("In showSavedNews Method.");
-		System.out.println(newsList.getNewsList());
-        return new ModelAndView("showSavedNews");
+		System.out.println(newsList);
+*/
+        return new ModelAndView("showSavedNews", "newsList", newsList);
     }
 
     @RequestMapping(value = "/searchNews", method = RequestMethod.POST)
@@ -93,5 +106,22 @@ public class NewsController {
 
         return new ModelAndView("searchNews", "newsList", newsList);
     }
+    
+    @RequestMapping(value = "/toDelNews", method = RequestMethod.GET)
+    public ModelAndView toDelNews(
+            @ModelAttribute News news,
+    		BindingResult result) {
+    	return new ModelAndView("delNews");
+    }
+
+    @RequestMapping(value = "/delNews", method = RequestMethod.POST)
+    public ModelAndView delNews(
+            @ModelAttribute News news,
+            BindingResult result) {
+    	news = this.newsService.getNewsById(news.getId());
+    	this.newsService.delete(news);
+        return new ModelAndView("delNews", "news", news);
+    }
+
 
 }
