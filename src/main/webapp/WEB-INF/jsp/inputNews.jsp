@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="s"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>Insert title here</title>
+
 </head>
 <body>
 
@@ -19,13 +20,13 @@ Welcome to the <b>Spring Boot-MVC-JPA-PostgreSQL-Maven Application!</b><br/>
  --%>
 <h3>Course: UMSL CS5520-2017-Spring</h3>
 	<fieldset>
-		<form:form id="saveForm" modelAttribute="news" 
+		<s:form id="saveForm" modelAttribute="news" 
 			action="saveNews" method="POST">
 		<br/>
-		<form:input path="id" placeholder="Input id"></form:input>
-		<form:input path="source" placeholder="Input source"></form:input>
-		<form:input path="title" placeholder="Input title"></form:input>
-		<form:input path="content" placeholder="Input content"></form:input>
+		<s:input path="id" placeholder="Input id"></s:input>
+		<s:input path="source" placeholder="Input source"></s:input>
+		<s:input path="title" placeholder="Input title"></s:input>
+		<s:input path="content" placeholder="Input content"></s:input>
 		<input type="submit" value="Save"></input>
 		<br/><br/>
 		<br>
@@ -54,18 +55,21 @@ Welcome to the <b>Spring Boot-MVC-JPA-PostgreSQL-Maven Application!</b><br/>
 		</tr>
 		</table>
 		</c:if>
-		<br>
-		<a href="showSavedNews" >Click here to load saved news</a>
-		
 		</fieldset>
-		
+		<br>
+		<fieldset>
+		<a href="showSavedNews" >Click here to load saved news</a>
+		</fieldset>
 		<br/>
-
+		<fieldset>
+		<a href="searchNews" >Click here to search news</a>
+		</fieldset>
+		<br/>
 		<fieldset>
 		<a href="toDelNews" >Click here to delete news</a>
 		</fieldset>	
 
-		</form:form>
+		</s:form>
 	</fieldset>
 	</center>	
 </body>

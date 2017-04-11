@@ -7,21 +7,21 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="s"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title> Saved News Displayed Here: </title>
+
 </head>
 
 <body>
 <center>
-<h1> Saved News Displayed Here: </h1>
 	<fieldset>
-		<form:form id="loadForm" modelAttribute="newsList" 
-			action="showQuestions.html" method="GET">
+		<h1> Saved News Displayed Here: </h1>
+		<s:form id="showNews" modelAttribute="newsList" method="GET">
 		<br/>
 		<br/><br/>
 		<fieldset>
@@ -51,17 +51,20 @@
 		</c:forEach>
 		</table>
 		</c:if>
-		<br>
-		<a href="inputNews" >Click here to input news</a>
-		
 		</fieldset>
-
 		<br/>
-
+		<fieldset>
+		<a href="searchNews" >Click here to search news</a>
+		</fieldset>
+		<br/>
+		<fieldset>
+		<a href="inputNews" >Click here to input news</a>
+		</fieldset>
+		<br/>
 		<fieldset>
 		<a href="toDelNews" >Click here to delete news</a>
-		</fieldset>	
-		</form:form>
+		</fieldset>
+		</s:form>
 	</fieldset>
 	</center>	
 </body>
